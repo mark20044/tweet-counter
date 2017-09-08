@@ -13,6 +13,12 @@ module.exports = function (user, start, end, callback) {
     start = new Date(start);
     end = new Date(end);
     var N = 86400000;
+    
+    if (start > end) {
+      var ph = start;
+      start = end;
+      end = ph;
+    }
 
     // convert to noon Eastern 
     start = new Date(start.setUTCHours(16));
