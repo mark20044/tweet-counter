@@ -13,13 +13,12 @@ li {
   margin: 0;
 }
 
-
 #container {
   width: 280px;
   margin-top: 35px;
-  margin-left: calc( 50% - 270px );
+  margin-left: calc( 50% - 156px );
   background: #e0efff;
-  padding: 20px;
+  padding: 15px;
   border: 1px solid #1da1f2;
   border-radius: 8px;
   box-shadow: -1px 1px 1px #ddd
@@ -78,4 +77,15 @@ input {
 
 #output label {
   margin-left: 30px;
+}
+
+#disclaimer {
+  font-size: .75em;
+  position: absolute;
+  bottom: 2%;
+}
+
+#disclaimer span {
+  display: inline-block;
+  margin-left: 3px;
 }

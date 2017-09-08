@@ -13,6 +13,12 @@ module.exports = function (user, start, end, callback) {
     start = new Date(start);
     end = new Date(end);
     var N = 86400000;
+    
+    if (start > end) {
+      var ph = start;
+      start = end;
+      end = ph;
+    }
 
     // convert to noon Eastern 
     start = new Date(start.setUTCHours(16));
@@ -57,7 +63,7 @@ module.exports = function (user, start, end, callback) {
       var oldest = t[t.length - 1];
       console.log("Oldest tweet is from: " + oldest.created_at);
       
-      if (new Date(oldest.created_at) > new Date(s)) {
+      if (new Date(oldest.created_at) > new Date(s) && twt.length > 0) {
         console.log("getting more...");
         getTweets(t, s, u, oldest.id, cb) ;
         
