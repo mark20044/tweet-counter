@@ -1,0 +1,39 @@
+html {
+  font-family: Arial, sans-serif;
+  background: #e0efff;
+  color: #3f3f1f;
+}
+label {
+  padding: 5px 5px 0 0;
+  margin-right: 15px;
+  display: inline-block;
+  width: 80px;
+  border-bottom: 1px dashed #aaa;
+}
+
+input {
+  font-family: Arial, sans-serif;
+}
+
+div {
+  margin: 35px 0 0 30px;
+}
+
+#user {
+  width: 145px;
+  border: 1px solid #aaa;
+  padding: 3px;
+}
+
+#submit {
+  margin-top: 13px;
+  margin-left: 145px;
+  -webkit-appearance: none;
+  color: white;
+  background: #1da1f2;
+  border: none;
+  padding: 9px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+}
