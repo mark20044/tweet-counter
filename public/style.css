@@ -1,33 +1,61 @@
 html {
-  font-family: Arial, sans-serif;
-  background: #e0efff;
+  font-family: Raleway, Arial, sans-serif;
   color: #3f3f1f;
 }
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  margin: 0;
+}
+
+
+#container {
+  width: 280px;
+  margin-top: 35px;
+  margin-left: calc( 50% - 270px );
+  background: #e0efff;
+  padding: 20px;
+  border: 1px solid #1da1f2;
+  border-radius: 8px;
+  box-shadow: -1px 1px 1px #ddd
+}
+
+#container li {
+  border-bottom: 1px dotted #fff;
+}
+
 label {
   padding: 5px 5px 0 0;
   margin-right: 15px;
   display: inline-block;
-  width: 80px;
-  border-bottom: 1px dashed #aaa;
+  width: 100px;
+  text-align: right;
 }
 
 input {
-  font-family: Arial, sans-serif;
-}
-
-div {
-  margin: 35px 0 0 30px;
+  font-family: Raleway, Arial, sans-serif;
 }
 
 #user {
-  width: 145px;
+  width: 158.86px;
   border: 1px solid #aaa;
   padding: 3px;
 }
 
+#input {
+  padding-bottom: 11px;
+  margin-bottom: 2px;
+  border-bottom: 1px solid #1da1f2;
+}
+
 #submit {
   margin-top: 13px;
-  margin-left: 145px;
+  margin-left: calc(100% - 105px);
   -webkit-appearance: none;
   color: white;
   background: #1da1f2;
@@ -35,5 +63,19 @@ div {
   padding: 9px;
   border-radius: 8px;
   cursor: pointer;
-  font-family: Arial, sans-serif;
+  font-family: Raleway, Arial, sans-serif;
+  box-shadow: -2px 2px 1px #ddd;
+  
+}
+
+#submit:active {
+  box-shadow: none;
+}
+
+#submit:focus {
+  outline: none;
+}
+
+#output label {
+  margin-left: 30px;
 }
