@@ -78,3 +78,14 @@ input {
 #output label {
   margin-left: 30px;
 }
+
+#disclaimer {
+  font-size: .75em;
+  position: absolute;
+  bottom: 2%;
+}
+
+#disclaimer span {
+  display: inline-block;
+  margin-left: 3px;
+}
