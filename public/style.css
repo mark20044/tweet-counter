@@ -38,10 +38,10 @@ label {
 
 input {
   font-family: Raleway, Arial, sans-serif;
+  width: 160px;
 }
 
 #user {
-  width: 158.86px;
   border: 1px solid #aaa;
   padding: 3px;
 }
@@ -54,7 +54,7 @@ input {
 
 #submit {
   margin-top: 13px;
-  margin-left: calc(100% - 105px);
+  margin-left: calc(100% - 160px);
   -webkit-appearance: none;
   color: white;
   background: #1da1f2;
