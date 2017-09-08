@@ -1,0 +1,38 @@
+html
+  head
+    title Tweet Counter
+    link(href="/style.css" rel="stylesheet" type="text/css")
+    
+  body
+    div#input
+      label(for="user") user: 
+      input#user(type="text")
+      br
+      label(for="startdate") start date: 
+      input#startdate(type="date")
+      br
+      label(for="enddate") end date: 
+      input#enddate(type="date")
+      br
+      input#submit(type="button" value="Count Tweets")
+    div#output
+      label user: 
+      span#display-user
+      br
+      label Start Date: 
+      span#display-startdate
+      br
+      label End Date: 
+      span#display-enddate
+      br
+      label Total Days: 
+      span#display-totaldays
+      br
+      label Tweets: 
+      span#display-tweets
+      br
+      label Tweets/Day: 
+      span#display-average
+      br
+      p: i currently limited to 400 tweets total
+    script(src="/functions.js" type="text/javascript")
