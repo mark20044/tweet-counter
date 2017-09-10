@@ -7,6 +7,9 @@ html
     
   body
     div#container
+      span#status App status: 
+        span#display-requests
+        |  capacity.
       div#input
         ul
           li
@@ -39,11 +42,12 @@ html
           li
             label Tweets/Day: 
             span#display-average
-    p#disclaimer: span Includes retweets
+    p#disclaimer 
+      span Includes retweets
       span | Cannnot count protected users' tweets
-      span | May differ from actual count on twitter.com
-      span | Limited to 100 requests per minute, 1 request is 200 or fewer tweets
+      span | Limited to 1500 requests per 15 minutes, 1 request is 200 or fewer tweets
       span | All dates Noon Eastern
-      span | Contribute on 
-        a(href="https://github.com/mark20044/tweet-counter") GitHub
+      br
+      span Contribute on 
+        a(href="https://github.com/mark20044/tweet-counter" target="_blank") GitHub
     script(src="/functions.js" type="text/javascript")

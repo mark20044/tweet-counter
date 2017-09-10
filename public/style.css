@@ -3,6 +3,17 @@ html {
   color: #3f3f1f;
 }
 
+#status {
+  font-size: .75em;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
 ul {
   margin: 0;
   padding: 0;

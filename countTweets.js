@@ -1,4 +1,5 @@
 module.exports = function (user, start, end, callback) {
+  var logRequest = require('./logRequest.js')
   var Twitter = require('twitter');
   var client = new Twitter({
     consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -91,6 +92,8 @@ module.exports = function (user, start, end, callback) {
     // Call Twitter API
     client.get('statuses/user_timeline', options, (err, twt, res) => {
       if (err) console.error(err);
+      
+      logRequest();
       
       // On first call, t is an empty array
       t = t.concat(twt);

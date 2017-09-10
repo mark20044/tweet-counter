@@ -3,7 +3,8 @@
 // init project
 var express = require('express');
 var app = express();
-var countTweets = require('./countTweets.js')
+var countTweets = require('./countTweets.js');
+var getRequests = require('./getRequests.js');
 
 app.set('view engine', 'pug');
 
@@ -23,6 +24,10 @@ app.get("/", function (request, response) {
 app.get("/count-tweets?", function (request, response) {
   countTweets(request.query.user, request.query.start, request.query.end, x => response.json(x))
 });
+
+app.get("/get-requests", function (q, r) {
+  getRequests(x => r.json(x));
+})
 
 // listen for requests
 var listener = app.listen(process.env.PORT, function () {

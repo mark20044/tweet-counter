@@ -5,6 +5,9 @@ document.querySelector("#input").addEventListener("keydown", function (e) {
     }
 });
 
+window.setTimeout(countRequests, 60000)
+countRequests();
+
 function sendRequest() {
   var u = document.querySelector("#user").value;
   var s = document.querySelector("#startdate").value;
@@ -12,7 +15,7 @@ function sendRequest() {
   
   if (u.length < 1 || s.length < 5 || e.length < 5) return;
   
-  var url ="https://vine-kitty.glitch.me/count-tweets?user=" + u + "&start=" + s + "&end=" + e;
+  var url ="/count-tweets?user=" + u + "&start=" + s + "&end=" + e;
   
   // console.log(url);
   
@@ -25,8 +28,22 @@ function sendRequest() {
       display[d].innerHTML = x[display[d].id.split("-")[1]];
     }
     
+    countRequests(); 
+    
   });
   
+}
+
+function countRequests() {
+  var d = document.querySelector("#display-requests");
+  d.classList = "hidden";
+  var url = "/get-requests";
+  
+  httpGetAsync(url, x => {
+    console.log("Got " + x + " requests.")
+    d.innerHTML = Math.round(x / 15) / 100 + "%";
+    d.classList = "";
+  });
 }
 
 function httpGetAsync(theUrl, callback) {
