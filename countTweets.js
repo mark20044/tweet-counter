@@ -19,6 +19,7 @@ module.exports = function (user, start, end, callback) {
   }
   
   var today = new Date();
+  // 16:00 UTC is Noon EDT, 17:00 UTC is noon EST
   var offset = today.dst() ? 16 : 17;
   // thanks stackoverflow, you're the best
   
@@ -40,22 +41,29 @@ module.exports = function (user, start, end, callback) {
 
     // convert to noon Eastern 
     start = new Date(start.setUTCHours(offset));
-    end = new Date() < new Date(end.setUTCHours(offset)) ? new Date() : new Date(end.setUTCHours(offset));
+    // If the specified end date is in the future, use now as the end date
+    end = new Date(end.setUTCHours(offset));
+    end = today < end ? today : end;
     
     // Compute total number of days, rounded to the nearest tenth
     var totaldays = Math.round(10 * (end - start) / N) / 10;
     
     // if tweets were returned, remove any from the array that fall outside the specified time span
-    t = t.length < 1 ? t : t.filter((x, i , a) => {
+    t = t.length < 1 ? t : t.filter( x => {
       // if the array contains tweet objects, assign d with their created_at date
       var d = x.hasOwnProperty("created_at") ? new Date(x.created_at) : 0;
-      // TODO: check that x.id is unique
       return (d <= end && d >= start);
     });
-
+    
+    // console.log("Returning tweets: " + JSON.stringify(t));
+    
+    // replace each tweet with it's id, remove any duplicates
+    t = t.map( x => x.id ).filter( (x,i,a) => a.indexOf(x) === i);
+    
+    // calculate average tweets per day
     var average = Math.round(10 * t.length / totaldays) / 10;
 
-    // console.log("Returning tweets: " + JSON.stringify(t));
+    
     console.log(user + " has " + t.length + " tweets from " + start + " to " + end);
 
     callback({
@@ -69,7 +77,7 @@ module.exports = function (user, start, end, callback) {
   });
 
   function getTweets(t, s, u, m, cb) {
-    // As of 1.1, the statuses/user_timeline always includes retweets regardless of the include_rts value
+    // As of Twitter API 1.1, the statuses/user_timeline always includes retweets regardless of the include_rts value
     var options = {
       screen_name: u,
       count: 200,
@@ -77,7 +85,7 @@ module.exports = function (user, start, end, callback) {
       trim_user: 1,
       include_rts: 1
     };
-    // Only include max_id value on subsequent calls
+    // Only include max_id property and value on subsequent calls
     if (m != null) options.max_id = m;
     
     // Call Twitter API
