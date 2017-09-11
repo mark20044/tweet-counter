@@ -26,20 +26,21 @@ module.exports = function (user, start, end, callback) {
   
   // max_id is the newest tweet to retrieve, first run is null to get the very newest
   var max_id = null;
+  
+  start = new Date(start);
+  end = new Date(end);
+  
+  // Sometimes people forget what "start" and "end" mean
+  if (start > end) {
+    var ph = start;
+    start = end;
+    end = ph;
+  }
   getTweets([], start, user, max_id, t => {
 
-    start = new Date(start);
-    end = new Date(end);
     // N = ms per day
     var N = 86400000;
     
-    // Sometimes people forget what "start" and "end" mean
-    if (start > end) {
-      var ph = start;
-      start = end;
-      end = ph;
-    }
-
     // convert to noon Eastern 
     start = new Date(start.setUTCHours(offset));
     // If the specified end date is in the future, use now as the end date
@@ -56,6 +57,7 @@ module.exports = function (user, start, end, callback) {
       return (d <= end && d >= start);
     });
     
+    var oldest = t.length < 1 ? start : new Date(t[t.length - 1].created_at);
     // console.log("Returning tweets: " + JSON.stringify(t));
     
     // replace each tweet with it's id, remove any duplicates
@@ -70,7 +72,7 @@ module.exports = function (user, start, end, callback) {
     callback({
       user: user,
       tweets: t.length,
-      startdate: start.toLocaleDateString(),
+      startdate: oldest.toLocaleDateString(),
       enddate: end.toLocaleDateString(),
       totaldays: totaldays,
       average: average

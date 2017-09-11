@@ -35,14 +35,21 @@ function sendRequest() {
 }
 
 function countRequests() {
-  var d = document.querySelector("#display-requests");
+  var d = document.querySelector("#percent-capacity");
+  var s = document.querySelector("#status");
+  
   d.classList = "hidden";
   var url = "/get-requests";
   
   httpGetAsync(url, x => {
     console.log("Got " + x + " requests.")
-    d.innerHTML = Math.round(x / 15) / 100 + "%";
+    var pct = Math.round(x / 15) / 100;
+    d.innerHTML = x == undefined ? 0 : pct + "%";
     d.classList = "";
+    
+    if (pct < 75) s.classList = "ok";
+    else if (pct >= 75 && pct < 100) s.classList = "heavy";
+    else if (pct >= 100) s.classList = "overloaded"
   });
 }
 

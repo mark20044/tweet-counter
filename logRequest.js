@@ -4,7 +4,7 @@ module.exports = function () {
   
   var url = process.env.MONGODB_URL;    
   var time = new Date();
-  console.log("Time: " + time);
+  // console.log("Time: " + time);
 
     MongoClient.connect(url, function (e, db) {
       if (e) {
