@@ -14,7 +14,7 @@ function sendRequest() {
   var e = document.querySelector("#enddate").value;
   
   var i = document.querySelector("#input");
-  i.classList = "loading";
+  i.classList.add("loading");
   
   if (u.length < 1 || s.length < 5 || e.length < 5) return;
   
@@ -22,7 +22,7 @@ function sendRequest() {
   
   // console.log(url);
   
-  httpGetAsync(url, x => {
+  httpGetAsync(url, function (x) {
     x = JSON.parse(x);
     console.log("Data received: " + JSON.stringify(x));
     var display = document.querySelectorAll("[id^=display-]");
@@ -33,7 +33,7 @@ function sendRequest() {
     
     countRequests();
     
-    i.classList = "";
+    i.classList.remove("loading");
     
   });
   
@@ -45,7 +45,7 @@ function countRequests() {
   
   var url = "/get-requests";
   
-  httpGetAsync(url, x => {
+  httpGetAsync(url, function(x) {
     console.log("Got " + x + " requests.")
     var pct = Math.round(x / 15) / 100;
     d.innerHTML = x == undefined ? 0 : pct + "%";

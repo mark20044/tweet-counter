@@ -8,6 +8,7 @@ html {
   display: inline-block;
   width: 100%;
   text-align: center;
+  margin: -6px 0 6px;
 }
 
 #status:before {
@@ -69,12 +70,12 @@ label {
 
 input {
   font-family: Raleway, Arial, sans-serif;
-  width: 160px;
+  width: 152px;
 }
 
 #user {
   border: 1px solid #aaa;
-  padding: 3px;
+  padding: 3px 1px;
 }
 
 #input {
@@ -113,12 +114,19 @@ input {
 #disclaimer {
   font-size: .75em;
   position: absolute;
-  bottom: 2%;
+  bottom: 1.5%;
+}
+
+@media only screen and (max-height: 500px) {
+    #disclaimer {
+        top: 100%;
+    }
 }
 
 #disclaimer span {
   display: inline-block;
   margin-left: 3px;
+  margin-top: 7px;
 }
 
 #loading {
