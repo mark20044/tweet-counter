@@ -1,6 +1,7 @@
 // server.js
 
 // init project
+require('dotenv').config()
 var express = require('express');
 var app = express();
 var countTweets = require('./countTweets.js');
