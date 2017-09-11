@@ -1,3 +1,4 @@
+document.querySelector("#submit").addEventListener("click", sendRequest);
 document.querySelector("#input").addEventListener("keydown", function (e) {
     if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
         sendRequest();
