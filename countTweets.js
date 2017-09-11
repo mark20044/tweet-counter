@@ -1,4 +1,5 @@
 module.exports = function (user, start, end, callback) {
+  var logRequest = require('./logRequest.js')
   var Twitter = require('twitter');
   var client = new Twitter({
     consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -19,49 +20,59 @@ module.exports = function (user, start, end, callback) {
   }
   
   var today = new Date();
+  // 16:00 UTC is Noon EDT, 17:00 UTC is noon EST
   var offset = today.dst() ? 16 : 17;
   // thanks stackoverflow, you're the best
   
   // max_id is the newest tweet to retrieve, first run is null to get the very newest
   var max_id = null;
+  
+  start = new Date(start);
+  end = new Date(end);
+  
+  // Sometimes people forget what "start" and "end" mean
+  if (start > end) {
+    var ph = start;
+    start = end;
+    end = ph;
+  }
   getTweets([], start, user, max_id, t => {
 
-    start = new Date(start);
-    end = new Date(end);
     // N = ms per day
     var N = 86400000;
     
-    // Sometimes people forget what "start" and "end" mean
-    if (start > end) {
-      var ph = start;
-      start = end;
-      end = ph;
-    }
-
     // convert to noon Eastern 
     start = new Date(start.setUTCHours(offset));
-    end = new Date() < new Date(end.setUTCHours(offset)) ? new Date() : new Date(end.setUTCHours(offset));
+    // If the specified end date is in the future, use now as the end date
+    end = new Date(end.setUTCHours(offset));
+    end = today < end ? today : end;
     
     // Compute total number of days, rounded to the nearest tenth
     var totaldays = Math.round(10 * (end - start) / N) / 10;
     
     // if tweets were returned, remove any from the array that fall outside the specified time span
-    t = t.length < 1 ? t : t.filter((x, i , a) => {
+    t = t.length < 1 ? t : t.filter( x => {
       // if the array contains tweet objects, assign d with their created_at date
       var d = x.hasOwnProperty("created_at") ? new Date(x.created_at) : 0;
-      // TODO: check that x.id is unique
       return (d <= end && d >= start);
     });
-
+    
+    var oldest = t.length < 1 ? start : new Date(t[t.length - 1].created_at);
+    // console.log("Returning tweets: " + JSON.stringify(t));
+    
+    // replace each tweet with it's id, remove any duplicates
+    t = t.map( x => x.id ).filter( (x,i,a) => a.indexOf(x) === i);
+    
+    // calculate average tweets per day
     var average = Math.round(10 * t.length / totaldays) / 10;
 
-    // console.log("Returning tweets: " + JSON.stringify(t));
+    
     console.log(user + " has " + t.length + " tweets from " + start + " to " + end);
 
     callback({
       user: user,
       tweets: t.length,
-      startdate: start.toLocaleDateString(),
+      startdate: oldest.toLocaleDateString(),
       enddate: end.toLocaleDateString(),
       totaldays: totaldays,
       average: average
@@ -69,7 +80,7 @@ module.exports = function (user, start, end, callback) {
   });
 
   function getTweets(t, s, u, m, cb) {
-    // As of 1.1, the statuses/user_timeline always includes retweets regardless of the include_rts value
+    // As of Twitter API 1.1, the statuses/user_timeline always includes retweets regardless of the include_rts value
     var options = {
       screen_name: u,
       count: 200,
@@ -77,12 +88,14 @@ module.exports = function (user, start, end, callback) {
       trim_user: 1,
       include_rts: 1
     };
-    // Only include max_id value on subsequent calls
+    // Only include max_id property and value on subsequent calls
     if (m != null) options.max_id = m;
     
     // Call Twitter API
     client.get('statuses/user_timeline', options, (err, twt, res) => {
       if (err) console.error(err);
+      
+      logRequest();
       
       // On first call, t is an empty array
       t = t.concat(twt);
