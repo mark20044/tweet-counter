@@ -13,7 +13,13 @@ html
       | ga('create', 'UA-XXXXX-Y', 'auto');
       | ga('send', 'pageview');
     script(async src='https://www.google-analytics.com/analytics.js')
-  body
+    script(async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")
+    script
+      | (adsbygoogle = window.adsbygoogle || []).push({
+      | google_ad_client: "ca-pub-8481996762324958",
+      | enable_page_level_ads: true
+      | });
+      body
     div#container
       span#status App status: 
         span#percent-capacity
