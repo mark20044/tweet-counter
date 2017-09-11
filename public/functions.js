@@ -1,4 +1,3 @@
-document.querySelector("#submit").addEventListener("click", sendRequest);
 document.querySelector("#input").addEventListener("keydown", function (e) {
     if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
         sendRequest();
@@ -13,10 +12,10 @@ function sendRequest() {
   var s = document.querySelector("#startdate").value;
   var e = document.querySelector("#enddate").value;
   
+  if (u.length < 1 || s.length < 5 || e.length < 5) return;
+  
   var i = document.querySelector("#input");
   i.classList.add("loading");
-  
-  if (u.length < 1 || s.length < 5 || e.length < 5) return;
   
   var url ="/count-tweets?user=" + u + "&start=" + s + "&end=" + e;
   
