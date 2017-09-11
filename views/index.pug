@@ -23,6 +23,9 @@ html
             label(for="enddate") end date: 
             input#enddate(type="date")
         input#submit(type="button" value="Count Tweets")
+        div#loading
+          - for (var i = 0; i < 6; i++)
+            div(class="blob blob-" + i)
       div#output
         ul
           li

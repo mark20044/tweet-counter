@@ -5,13 +5,16 @@ document.querySelector("#input").addEventListener("keydown", function (e) {
     }
 });
 
-window.setTimeout(countRequests, 60000)
+window.setInterval(countRequests, 60000)
 countRequests();
 
 function sendRequest() {
   var u = document.querySelector("#user").value;
   var s = document.querySelector("#startdate").value;
   var e = document.querySelector("#enddate").value;
+  
+  var i = document.querySelector("#input");
+  i.classList = "loading";
   
   if (u.length < 1 || s.length < 5 || e.length < 5) return;
   
@@ -28,7 +31,9 @@ function sendRequest() {
       display[d].innerHTML = x[display[d].id.split("-")[1]];
     }
     
-    countRequests(); 
+    countRequests();
+    
+    i.classList = "";
     
   });
   
@@ -38,14 +43,12 @@ function countRequests() {
   var d = document.querySelector("#percent-capacity");
   var s = document.querySelector("#status");
   
-  d.classList = "hidden";
   var url = "/get-requests";
   
   httpGetAsync(url, x => {
     console.log("Got " + x + " requests.")
     var pct = Math.round(x / 15) / 100;
     d.innerHTML = x == undefined ? 0 : pct + "%";
-    d.classList = "";
     
     if (pct < 75) s.classList = "ok";
     else if (pct >= 75 && pct < 100) s.classList = "heavy";
@@ -57,7 +60,7 @@ function httpGetAsync(theUrl, callback) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-      console.log("executing callback with data: " + xmlHttp.responseText);
+      // console.log("executing callback with data: " + xmlHttp.responseText);
       callback(xmlHttp.responseText);
     }
   }
