@@ -8,6 +8,7 @@ module.exports = function (callback) {
       if (e) {
         console.error('Unable to connect to the mongoDB server. Error:' + e);
         callback( "error: " + e );
+        db.close();
       } else {
   
         var collection = db.collection('request_log'); 
