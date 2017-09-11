@@ -1,6 +1,6 @@
 {
   "name": "tweet-counter",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Counts tweets by a user in a timespan",
   "main": "server.js",
   "scripts": {
@@ -10,7 +10,8 @@
     "express": "^4.15.4",
     "pug": "^2.0.0-rc.3",
     "twitter": "^1.7.1",
-    "mongodb": "^2.2.31"
+    "mongodb": "^2.2.31",
+    "dotenv": "^4.0.0"
   },
   "engines": {
     "node": "8.x"
