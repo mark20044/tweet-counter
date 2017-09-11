@@ -10,6 +10,26 @@ html {
   text-align: center;
 }
 
+#status:before {
+  font-family: FontAwesome;
+  margin-right: 5px;
+}
+
+#status.ok:before {
+  content: "\f0aa";
+  color: #4c4;
+}
+
+#status.heavy:before {
+  content: "\f071";
+  color: orange;
+}
+
+#status.overloaded:before {
+  content: "\f0ab";
+  color: red;
+}
+
 .hidden {
   display: none;
 }
