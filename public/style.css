@@ -3,6 +3,10 @@ html {
   color: #3f3f1f;
 }
 
+body {
+  padding-bottom: 150px;
+}
+
 #status {
   font-size: .75em;
   display: inline-block;
@@ -35,10 +39,15 @@ html {
   display: none;
 }
 
-ul {
+#container ul {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+ul#faq {
+    width: 50%;
+    margin-left: 2%;
 }
 
 li {
@@ -112,21 +121,23 @@ input {
 }
 
 #footer {
+  background: white;
   font-size: .75em;
-  position: absolute;
-  bottom: 1.5%;
-}
-
-@media only screen and (max-height: 500px) {
-    #footer {
-        top: 100%;
-    }
+  position: fixed;
+  bottom: 0;
+  padding-bottom: 1%;
+  width: 100%;
 }
 
 #footer span {
   display: inline-block;
   margin-left: 3px;
   margin-top: 7px;
+}
+
+#contribute {
+    position: absolute;
+    right: 1.5%;
 }
 
 #loading {

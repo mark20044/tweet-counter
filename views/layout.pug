@@ -2,6 +2,7 @@ doctype html
 html
   block head
     head
+      title Tweet Counter - #{title}
       block links
         link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css")
         link(href="/style.css" rel="stylesheet" type="text/css")
@@ -23,14 +24,16 @@ html
           | enable_page_level_ads: true
           | });
     block body
+      body
+        h1 Tweet Counter
+        h2 #{title}
     block footer
-      p#footer 
-        span Includes retweets
-        span | Cannnot count protected users' tweets
-        span | Limited to 1500 requests per 15 minutes, 1 request is 200 or fewer tweets
-        span | Limited to ~3200 tweets
-        span | All dates Noon Eastern
-        br
-        span Contribute on 
+      div#footer 
+        span#about
+          span: a(href="/about") About the Author
+          span | 
+            a(href="/faq") Frequently Asked Questions
+          span: article | Tweet Counter returns the total number of tweets (including retweets) by a user in a specified span of time.
+        span#contribute Contribute on 
           a(href="https://github.com/mark20044/tweet-counter" target="_blank") GitHub
       
