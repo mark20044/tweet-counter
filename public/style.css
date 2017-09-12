@@ -111,19 +111,19 @@ input {
   margin-left: 30px;
 }
 
-#disclaimer {
+#footer {
   font-size: .75em;
   position: absolute;
   bottom: 1.5%;
 }
 
 @media only screen and (max-height: 500px) {
-    #disclaimer {
+    #footer {
         top: 100%;
     }
 }
 
-#disclaimer span {
+#footer span {
   display: inline-block;
   margin-left: 3px;
   margin-top: 7px;

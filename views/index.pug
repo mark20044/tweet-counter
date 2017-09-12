@@ -1,25 +1,7 @@
-doctype html
-html
-  head
-    title Tweet Counter
-    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css")
-    link(href="/style.css" rel="stylesheet" type="text/css")
-    link(href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet")
-    link(rel="shortcut icon" href="https://cdn.glitch.com/c1e498e8-b00c-4434-9d0e-4043a384ed2f%2Ffavicon.ico?1504902692759")
-    meta(name="viewport" content="width=device-width, initial-scale=1")
-    meta(name="google-site-verification" content="sdfa8WfOow3S1eKW4Cmlf6g3xI7ke4EiRVOyb0UX-Gg")
-    script
-      | window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      | ga('create', 'UA-XXXXX-Y', 'auto');
-      | ga('send', 'pageview');
-    script(async src='https://www.google-analytics.com/analytics.js')
-    script(async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")
-    script
-      | (adsbygoogle = window.adsbygoogle || []).push({
-      | google_ad_client: "ca-pub-8481996762324958",
-      | enable_page_level_ads: true
-      | });
-      body
+extends ./layout.pug
+prepend head
+  title Tweet Counter
+append body
     div#container
       span#status App status: 
         span#percent-capacity
@@ -59,13 +41,5 @@ html
           li
             label Tweets/Day: 
             span#display-average
-    p#disclaimer 
-      span Includes retweets
-      span | Cannnot count protected users' tweets
-      span | Limited to 1500 requests per 15 minutes, 1 request is 200 or fewer tweets
-      span | Limited to ~3200 tweets
-      span | All dates Noon Eastern
-      br
-      span Contribute on 
-        a(href="https://github.com/mark20044/tweet-counter" target="_blank") GitHub
-    script(src="/functions.js" type="text/javascript")
+append footer
+  script(src="/functions.js" type="text/javascript")
