@@ -47,12 +47,12 @@ function countRequests() {
   
   httpGetAsync(url, function(x) {
     console.log("Got " + x + " requests.")
-    var pct = Math.round(x / 15) / 100;
+    var pct = 100 - Math.round(x / 15) / 100;
     d.innerHTML = x == undefined ? 0 : pct + "%";
     
-    if (pct < 75) s.classList = "ok";
-    else if (pct >= 75 && pct < 100) s.classList = "heavy";
-    else if (pct >= 100) s.classList = "overloaded"
+    if (pct > 75) s.classList = "ok";
+    else if (pct <= 75 && pct > 100) s.classList = "heavy";
+    else if (pct <= 100) s.classList = "overloaded"
   });
 }
 

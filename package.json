@@ -1,6 +1,6 @@
 {
   "name": "tweet-counter",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Counts tweets by a user in a timespan",
   "main": "server.js",
   "scripts": {
