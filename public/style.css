@@ -7,6 +7,10 @@ body {
   padding-bottom: 150px;
 }
 
+#title {
+  text-align: center;
+}
+
 #status {
   font-size: .75em;
   display: inline-block;

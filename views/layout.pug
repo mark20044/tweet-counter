@@ -14,19 +14,20 @@ html
       block scripts
         script
           | window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-          | ga('create', 'UA-64474449-3', 'auto');
+          | ga('create', '#{gaCode}', 'auto');
           | ga('send', 'pageview');
         script(async src='https://www.google-analytics.com/analytics.js')
         script(async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")
         script
           | (adsbygoogle = window.adsbygoogle || []).push({
-          | google_ad_client: "ca-pub-8481996762324958",
+          | google_ad_client: "#{adCode}",
           | enable_page_level_ads: true
           | });
     block body
       body
-        h1 Tweet Counter
-        h2 #{title}
+        div#title
+          h1 Tweet Counter
+          h2 #{title}
     block footer
       div#footer 
         span#about
