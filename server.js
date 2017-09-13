@@ -17,7 +17,7 @@ app.get("/", function (request, response) {
   response.render('index', {
     title: "Count Any User's Tweets",
     gaCode: process.env.GOOGLE_ANALYTICS_CODE,
-    aCode: process.env.GOOGLE_ADSENSE_CODE
+    adCode: process.env.GOOGLE_ADSENSE_CODE
   });
 });
 
