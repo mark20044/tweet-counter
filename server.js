@@ -14,9 +14,16 @@ app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (request, response) {
-  response.render('index');
+  response.render('index', {title: "Count Any User's Tweets"});
 });
 
+app.get("/faq", function (request, response) {
+  response.render('faq', {title: "Frequently Asked Questions"});
+});
+
+app.get("/about", function (request, response) {
+  response.render('about', {title: "About the Author"});
+});
 
 // app.get("/get-twitter-user-id?", function (request, response) {
 //   response.send(getId(request.query.user));

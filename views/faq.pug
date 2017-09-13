@@ -1,0 +1,155 @@
+extends ./layout.pug
+append body
+  ul#faq
+    li
+      p
+        | How do I use 
+        strong Tweet Counter
+        | ?
+      ul
+        li
+          | Tweet Counter is designed to be as user-friendly as possible. Simply type in the Twitter 
+          strong screen name
+          |  of the person whose tweets you want to count, then select the 
+          strong start date
+          |  and 
+          strong end date
+          |  for your count. Hit 
+          strong Count Tweets
+          |  and watch the magic happen!
+    li
+      p What happens if I get my start and end dates mixed up?
+      ul
+        li
+          | Never fear! 
+          strong Tweet Counter
+          | 's author did this many times while developing the app, so he implemented a feature that checks the dates and swaps them if they're mixed up.
+    li
+      p
+        | What if I select an end date that's in the future? Won't that mess up my 
+        em total days
+        |  and 
+        em tweets per day
+        |  results?
+      ul
+        li
+          | Nope! 
+          strong Tweet Counter
+          |  checks if the end date is in the future, and uses 
+          strong now
+          |  as the end date if it is.
+    li
+      p
+        | How many tweets can 
+        strong Tweet Counter
+        |  count?
+      ul
+        li
+          strong Tweet Counter
+          |  uses the Twitter API 1.1, which can only retrieve about 3200 of a user's most recent tweets.
+    li
+      p Is there any way to get a count without retweets?
+      ul
+        li
+          p
+            | Not at this time. The 
+            a(href='https://dev.twitter.com/rest/reference/get/statuses/user_timeline') Twitter API
+            |  includes retweets by default. The author may implement a retweet filter in the future if there's demand for it. If you want it, 
+            a(href='http://www.markworks.net/#contact') let him know
+            | !
+        li
+          p
+            | Alternatively, since 
+            strong Tweet Counter
+            |  is open source, you can 
+            a(href='https://github.com/mark20044/tweet-counter') contribute
+            |  whatever features you'd like!
+    li
+      p
+        | What time of day does 
+        strong Tweet Counter
+        |  count to/from? Can I specify the time?
+      ul
+        li
+          p
+            | Currently, 
+            strong Tweet Counter
+            |  converts all dates to noon Eastern Time, and accounts for daylight saving time.
+        li
+          p
+            | The author may implement a time selection option in the future. Again, feel free to 
+            a(href='http://www.markworks.net/#contact') request
+            |  it or 
+            a(href='https://github.com/mark20044/tweet-counter') contribute
+            |  it yourself.
+    li
+      p What does "x% available" mean?
+      ul
+        li
+          strong Tweet Counter
+          |  currently uses a single Twitter API Application Authorization, which means it is limited to 1500 requests in a 15 minute window. More can be added, if necessary.
+    li
+      p What is a "request"?
+      ul
+        li
+          | A request is a call to the Twitter API, which returns up to 200 tweets at a time. That means a single run of 
+          strong Count Tweets
+          |  can be anywhere from 1 to 17 requests.
+    li
+      p
+        | 17 requests? I thought you said the API can only retrieve 3200 tweets. Are you bad at math?
+      ul
+        li
+          | Sometimes! But not in this case. 
+          strong Tweet Counter
+          |  sends one last request to make sure it got all the tweets it can. This is especially useful when counting tweets from a new account: if you select a date before they started tweeting, it stops counting when it gets an empty response.
+    li
+      p
+        | How do I know 
+        strong Tweet Counter
+        |  is accurate?
+      ul
+        li
+          | Try it yourself! While the author cannot guarantee the count accuracy, you can easily test independently. Find a user with less than 3200 tweets, and use 
+          strong Tweet Counter
+          |  to count their tweets. Then compare with the number on their actual Twitter dashboard. Feel free to yell at us if it's wrong. (No really, it'd be super helpful if you 
+          a(href='http://www.markworks.net/#contact') told us
+          |  about any inaccuracies.)
+    li
+      p
+        | I'm too lazy to find a user with less than 3200 tweets. Could you just point me to one?
+      ul
+        li
+          | Well if you're that lazy, you'll probably appreciate the length of his screen name, too: 
+          a(href='https://twitter.com/vp') vp
+          | . Ask 
+          strong Tweet Counter
+          |  to count from any date before 1/20/2017 to tomorrow and you can compare for yourself.
+    li
+      p
+        | What language is 
+        strong Tweet Counter
+        |  written in?
+      ul
+        li
+          strong Tweet Counter
+          |  is a Node.js app, utilizing Expressjs and Pug, in addition to a number of other dependencies. Get the full list from 
+          a(href='https://www.npmjs.com/package/tweet-counter') NPM
+          | .
+    li
+      p
+        | What development environment did you use to develop 
+        strong Tweet Counter
+        | ?
+      ul
+        li
+          p
+            strong Tweet Counter
+            |  was developed on Glitch. 
+            strong Glitch
+            |  is the friendly commmunity where you'll build the app of your dreams. Glitch lets you instantly create, remix, edit, and host an app, bot or site, and you can invite collaborators or helpers to simultaneously edit code with you.
+        li
+          p
+            | Find out more 
+            a(href='https://glitch.com/about') about Glitch
+            | .
