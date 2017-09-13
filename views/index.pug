@@ -39,5 +39,16 @@ append body
           li
             label Tweets/Day: 
             span#display-average
+    div#help
+      p What's this?
+      p
+        strong Tweet Counter
+        |  counts tweets from a user in a given time span. 
+        br
+        | Cannot count protected tweets. Count is limited to most recent 3200 tweets.
+        br
+        | For more information, read the 
+        a(href="/faq") FAQ
+        | .
 append footer
   script(src="/functions.js" type="text/javascript")

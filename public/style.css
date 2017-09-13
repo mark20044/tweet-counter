@@ -159,6 +159,30 @@ input {
   display: none;
 }
 
+#help p:first-of-type {
+    font-size: .75em;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: dotted underline #1da1f2;
+}
+
+#help p:first-of-type:hover {
+    text-decoration: none;
+}
+
+#help p + p {
+    visibility: collapse;
+    text-align: center;
+    transition: all 1s;
+    color: white;
+    padding-bottom: 50px;
+}
+
+#help p + p.visible, #help p:hover + p, #help p:hover {
+    visibility: visible;
+    color: inherit;
+}
+
 /* Loading animation courtesy of Joe Harry https://codepen.io/woodwork/pen/YWjWzo */
 .blob {
     width: 2rem;

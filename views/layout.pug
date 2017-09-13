@@ -30,11 +30,13 @@ html
           h2 #{title}
     block footer
       div#footer 
-        span#about
+        span#about.menu.nav
           span: a(href="/about") About the Author
           span | 
             a(href="/faq") Frequently Asked Questions
-          span: article | Tweet Counter returns the total number of tweets (including retweets) by a user in a specified span of time.
+          span | 
+            a(href="/") Tweet Counter
+            |  is a NodeJS application.
         span#contribute Contribute on 
           a(href="https://github.com/mark20044/tweet-counter" target="_blank") GitHub
       
