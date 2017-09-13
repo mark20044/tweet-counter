@@ -14,7 +14,11 @@ app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (request, response) {
-  response.render('index', {title: "Count Any User's Tweets"});
+  response.render('index', {
+    title: "Count Any User's Tweets",
+    gaCode: process.env.GOOGLE_ANALYTICS_CODE,
+    aCode: process.env.GOOGLE_ADSENSE_CODE
+  });
 });
 
 app.get("/faq", function (request, response) {
