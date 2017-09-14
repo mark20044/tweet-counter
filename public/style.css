@@ -141,7 +141,13 @@ input {
 
 #contribute {
     position: absolute;
-    right: 1.5%;
+    right: 10px;
+}
+
+@media only screen and (max-width: 660px) {
+  #contribute {
+    bottom: 50px;
+  }
 }
 
 #loading {
