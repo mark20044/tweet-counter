@@ -5,6 +5,10 @@ document.querySelector("#input").addEventListener("keydown", function (e) {
     }
 });
 
+  var tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  document.querySelector('#enddate').value = tomorrow.toISOString().slice(0,10);
+
 window.setInterval(countRequests, 60000)
 countRequests();
 
